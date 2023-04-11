@@ -1,0 +1,23 @@
+{
+  "name": "tabling-task-reservations-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "jiheon788@ajou.ac.kr",
+  "license": "ISC",
+  "dependencies": {
+    "serve": "^14.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.4"
+  },
+  "type": "module"
+}
