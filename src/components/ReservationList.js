@@ -2,18 +2,15 @@ import { Status } from '../constants/UI.js';
 import ReservationDetail from './ReservationDetail.js';
 
 export default class ReservationList {
-  constructor($app, data) {
-    this.wrapper = document.createElement('div');
-    this.wrapper.className = 'wrapper';
-    this.reservationsData = data.reservations;
+  constructor($wrapper, data) {
+    this.$wrapper = $wrapper;
+    this.reservationsData = data;
     this.focusedIndex = 0;
-    $app.appendChild(this.wrapper);
     this.render();
-    console.log(this.reservationsData);
   }
 
   render() {
-    this.wrapper.innerHTML = '';
+    this.$wrapper.innerHTML = '';
 
     const reservations = document.createElement('div');
     reservations.className = 'reservations-list';
@@ -86,10 +83,10 @@ export default class ReservationList {
         }
       });
     }
-    this.wrapper.appendChild(reservations);
+    this.$wrapper.appendChild(reservations);
 
     new ReservationDetail(
-      this.wrapper,
+      this.$wrapper,
       this.reservationsData[this.focusedIndex],
     );
   }
