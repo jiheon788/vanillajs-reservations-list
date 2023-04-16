@@ -1,0 +1,34 @@
+html,
+body {
+  background-color: #ced8e4;
+}
+
+.wrapper {
+  margin: 0 8px;
+  display: grid;
+  gap: 1em;
+  grid-template-areas:
+    'header header header'
+    'list list detail';
+}
+
+.reservations-list {
+  grid-area: list;
+}
+
+.reservation-item {
+  background-color: #ffffff;
+  margin-bottom: 1em;
+  display: grid;
+  grid-template-columns: 0.4fr 1fr 0.1fr;
+  align-items: center;
+  border-radius: 20px;
+  padding: 0.5em 1em;
+}
+
+.reservation-detail {
+  grid-area: detail;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 0.5em 1em;
+}

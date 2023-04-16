@@ -1,8 +1,11 @@
+import ReservationDetail from './ReservationDetail.js';
+
 export default class ReservationList {
   constructor($app, data) {
     this.section = document.createElement('section');
     this.section.className = 'reservation-list';
     this.reservations = data.reservations;
+    this.focusedIndex = 0;
     $app.appendChild(this.section);
     this.render();
   }
@@ -14,12 +17,12 @@ export default class ReservationList {
     wrapper.className = 'wrapper';
 
     const reservations = document.createElement('div');
-    reservations.className = 'reservations';
+    reservations.className = 'reservations-list';
 
     if (this.reservations) {
       this.reservations.map((reservation) => {
         const item = document.createElement('div');
-        item.className = 'reservation';
+        item.className = 'reservation-item';
 
         const itemLeftInfo = document.createElement('div');
         const timeReserved = document.createElement('div');
@@ -60,6 +63,8 @@ export default class ReservationList {
         reservations.appendChild(item);
       });
     }
+
+    new ReservationDetail(wrapper, this.reservations[this.focusedIndex]);
 
     wrapper.appendChild(reservations);
     this.section.appendChild(wrapper);
