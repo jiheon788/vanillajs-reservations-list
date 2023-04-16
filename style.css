@@ -4,19 +4,16 @@ body {
 }
 
 .wrapper {
-  margin: 0 8px;
-  display: grid;
+  width: 100%;
+  display: flex;
   gap: 1em;
-  grid-template-areas:
-    'header header header'
-    'list list detail';
 }
 
 .reservations-list {
-  grid-area: list;
+  width: 100%;
 }
 
-.reservation-item {
+.reservations-list__item {
   background-color: #ffffff;
   margin-bottom: 1em;
   display: grid;
@@ -26,8 +23,16 @@ body {
   padding: 0.5em 1em;
 }
 
+.reservations-list__item__status--reserved {
+  color: #3bb94c;
+}
+
+.reservations-list__item__status--seated {
+  color: #162149;
+}
+
 .reservation-detail {
-  grid-area: detail;
+  width: 300px;
   background-color: #ffffff;
   border-radius: 20px;
   padding: 0.5em 1em;

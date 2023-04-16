@@ -1,29 +1,27 @@
+import { Status } from '../constants/UI.js';
 import ReservationDetail from './ReservationDetail.js';
 
 export default class ReservationList {
   constructor($app, data) {
-    this.section = document.createElement('section');
-    this.section.className = 'reservation-list';
-    this.reservations = data.reservations;
+    this.wrapper = document.createElement('div');
+    this.wrapper.className = 'wrapper';
+    this.reservationsData = data.reservations;
     this.focusedIndex = 0;
-    $app.appendChild(this.section);
+    $app.appendChild(this.wrapper);
     this.render();
-    console.log(this.reservations);
+    console.log(this.reservationsData);
   }
 
   render() {
-    this.section.innerHTML = '';
-
-    const wrapper = document.createElement('div');
-    wrapper.className = 'wrapper';
+    this.wrapper.innerHTML = '';
 
     const reservations = document.createElement('div');
     reservations.className = 'reservations-list';
 
-    if (this.reservations) {
-      this.reservations.map((reservation, index) => {
+    if (this.reservationsData) {
+      this.reservationsData.map((reservation, index) => {
         const item = document.createElement('div');
-        item.className = 'reservation-item';
+        item.className = 'reservations-list__item';
 
         item.addEventListener('click', (e) => {
           this.focusedIndex = index;
@@ -34,7 +32,9 @@ export default class ReservationList {
         const timeReserved = document.createElement('div');
         const status = document.createElement('div');
         timeReserved.innerText = reservation.timeReserved;
-        status.innerText = reservation.status;
+        status.innerText = Status[reservation.status];
+        status.className = `reservations-list__item__status--${reservation.status}`;
+
         itemLeftInfo.appendChild(timeReserved);
         itemLeftInfo.appendChild(status);
 
@@ -67,9 +67,9 @@ export default class ReservationList {
 
         button.addEventListener('click', (e) => {
           if (reservation.status === 'reserved') {
-            this.reservations[index].status = 'seated';
+            this.reservationsData[index].status = 'seated';
           } else if (reservation.status === 'seated') {
-            this.reservations[index].status = 'done';
+            this.reservationsData[index].status = 'done';
           }
           this.render();
         });
@@ -85,10 +85,11 @@ export default class ReservationList {
         }
       });
     }
+    this.wrapper.appendChild(reservations);
 
-    new ReservationDetail(wrapper, this.reservations[this.focusedIndex]);
-
-    wrapper.appendChild(reservations);
-    this.section.appendChild(wrapper);
+    new ReservationDetail(
+      this.wrapper,
+      this.reservationsData[this.focusedIndex],
+    );
   }
 }

@@ -1,3 +1,5 @@
+import { Status } from '../constants/UI.js';
+
 export default class ReservationDetail {
   constructor($target, data) {
     this.detailItem = document.createElement('div');
@@ -14,7 +16,7 @@ export default class ReservationDetail {
     reservationInfo.innerHTML = `
     <h1>예약 정보</h1>
     <ul>
-    <li>예약 상태 ${this.reservation.status}</li>
+    <li>예약 상태 ${Status[this.reservation.status]}</li>
     <li>예약 시간 ${this.reservation.timeReserved}</li>
     <li>접수 시간 ${this.reservation.timeRegistered}</li>
     </ul>
