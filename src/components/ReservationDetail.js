@@ -5,7 +5,6 @@ export default class ReservationDetail {
     this.reservation = data;
     $target.appendChild(this.detailItem);
     this.render();
-    console.log(data);
   }
 
   render() {

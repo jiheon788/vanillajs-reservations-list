@@ -8,6 +8,7 @@ export default class ReservationList {
     this.focusedIndex = 0;
     $app.appendChild(this.section);
     this.render();
+    console.log(this.reservations);
   }
 
   render() {
@@ -20,7 +21,7 @@ export default class ReservationList {
     reservations.className = 'reservations-list';
 
     if (this.reservations) {
-      this.reservations.map((reservation) => {
+      this.reservations.map((reservation, index) => {
         const item = document.createElement('div');
         item.className = 'reservation-item';
 
@@ -50,17 +51,33 @@ export default class ReservationList {
         itemMiddleInfo.appendChild(menus);
 
         const itemRightInfo = document.createElement('div');
+
+        const button = document.createElement('button');
         if (reservation.status === 'reserved') {
-          itemRightInfo.innerHTML = `<button>착석</button>`;
+          button.innerText = `착석`;
         }
         if (reservation.status === 'seated') {
-          itemRightInfo.innerHTML = `<button>퇴석</button>`;
+          button.innerText = `퇴석`;
         }
+
+        button.addEventListener('click', (e) => {
+          if (reservation.status === 'reserved') {
+            this.reservations[index].status = 'seated';
+          } else if (reservation.status === 'seated') {
+            this.reservations[index].status = 'done';
+          }
+          this.render();
+        });
+
+        itemRightInfo.appendChild(button);
 
         item.appendChild(itemLeftInfo);
         item.appendChild(itemMiddleInfo);
         item.appendChild(itemRightInfo);
-        reservations.appendChild(item);
+
+        if (reservation.status !== 'done') {
+          reservations.appendChild(item);
+        }
       });
     }
 
