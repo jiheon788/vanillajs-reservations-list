@@ -25,6 +25,11 @@ export default class ReservationList {
         const item = document.createElement('div');
         item.className = 'reservation-item';
 
+        item.addEventListener('click', (e) => {
+          this.focusedIndex = index;
+          this.render();
+        });
+
         const itemLeftInfo = document.createElement('div');
         const timeReserved = document.createElement('div');
         const status = document.createElement('div');
