@@ -42,15 +42,16 @@ export default class ReservationList {
         const customerInfo = document.createElement('div');
         const customers = document.createElement('div');
         const menus = document.createElement('div');
-        customerInfo.innerText = `${reservation.customer.name}-${[
+        customerInfo.innerText = `${reservation.customer.name}-[ ${[
           ...reservation.tables.map((table) => table.name),
-        ]}`;
+        ]} ]`;
         customers.innerText = `성인 ${reservation.customer.adult} 아이 ${reservation.customer.child}`;
-        reservation.menus.map((menu) => {
-          const menuInfo = document.createElement('div');
-          menuInfo.innerHTML = `${menu.name} (${menu.qty})`;
-          menus.appendChild(menuInfo);
-        });
+        menus.innerText = `[ ${[
+          ...reservation.menus.map((menu) => `${menu.name} (${menu.qty})`),
+        ]} ]`;
+        customerInfo.className = 'reservations-list__item__customerInfo';
+        menus.className = 'reservations-list__item__menus';
+
         itemMiddleInfo.appendChild(customerInfo);
         itemMiddleInfo.appendChild(customers);
         itemMiddleInfo.appendChild(menus);

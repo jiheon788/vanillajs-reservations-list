@@ -23,6 +23,13 @@ body {
   padding: 0.5em 1em;
 }
 
+.reservations-list__item__customerInfo,
+.reservations-list__item__menus {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 300px;
+}
 .reservations-list__item__status--reserved {
   color: #3bb94c;
 }
