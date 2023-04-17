@@ -1,4 +1,5 @@
 import { Status } from '../constants/UI.js';
+import { isMobile, timeFormatter } from '../utils/UIHelper.js';
 import ReservationDetail from './ReservationDetail.js';
 
 export default class ReservationList {
@@ -23,7 +24,7 @@ export default class ReservationList {
 
           item.innerHTML = `
         <div>
-          <div>${reservation.timeReserved}</div>
+          <div>${timeFormatter(reservation.timeReserved)}</div>
           <div class="reservations-list__item__status--${reservation.status}">
             ${Status[reservation.status]}
           </div>
@@ -45,14 +46,16 @@ export default class ReservationList {
             ]} ]
           </div>
         </div>
-        <button type="button" class="reservationBtn" data-index="${index}" data-status="${
+        <button type="button" class="reservations-list__button" data-index="${index}" data-status="${
             reservation.status
           }">
           ${reservation.status === 'reserved' ? '착석' : '퇴석'}
         </button>
       `;
+          const statusButton = item.querySelector('.reservations-list__button');
 
-          reservations.addEventListener('click', (e) => {
+          statusButton.addEventListener('click', (e) => {
+            e.stopPropagation();
             if (e.target.tagName === 'BUTTON') {
               const index = e.target.dataset.index;
               const status = e.target.dataset.status;
@@ -70,6 +73,11 @@ export default class ReservationList {
           item.addEventListener('click', (e) => {
             this.focusedIndex = index;
             this.render();
+
+            if (isMobile()) {
+              const modal = document.querySelector('.reservation-detail');
+              modal.style.display = 'block';
+            }
           });
 
           reservations.appendChild(item);
