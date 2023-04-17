@@ -30,6 +30,10 @@
   - [ ] 고객 메모 및 요청 사항 데이터는 최대 3행으로 표출
 - [ ] 그 외 데이터는 1행으로 표출
 
+#### Optional
+
+- [x] 팝업 표출 시, slide-up 으로 fade-in 애니메이션 처리
+
 #### Other conditions
 
 - [ ] VanillaJS/CSS 기반으로 개발하기를 권장합니다.
