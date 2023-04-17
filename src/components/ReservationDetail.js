@@ -45,20 +45,25 @@ export default class ReservationDetail {
     </div>
     `;
 
+    const onClose = () => {
+      const modal = document.querySelector('.reservation-detail');
+      const body = document.querySelector('body');
+      const scrollArea = document.querySelector('.reservations-list');
+
+      modal.style.display = 'none';
+      body.style.overflow = 'auto';
+      scrollArea.style.overflow = 'auto';
+    };
+
     const closeButton = detailItem.querySelector('.reservation-detail__button');
 
     closeButton.addEventListener('click', (e) => {
-      if (isMobile()) {
-        const modal = document.querySelector('.reservation-detail');
-        modal.style.display = 'none';
-      }
+      if (isMobile()) onClose();
     });
 
     detailItem.addEventListener('click', (e) => {
-      if (e.target.classList.contains('reservation-detail') && isMobile()) {
-        const modal = document.querySelector('.reservation-detail');
-        modal.style.display = 'none';
-      }
+      if (e.target.classList.contains('reservation-detail') && isMobile())
+        onClose();
     });
 
     this.$target.appendChild(detailItem);

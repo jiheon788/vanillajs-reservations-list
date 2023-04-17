@@ -6,7 +6,6 @@ export default class ReservationList {
   constructor($containter, data) {
     this.$containter = $containter;
     this.reservationsData = data;
-    console.log(data);
     this.focusedIndex = 0;
     this.render();
   }
@@ -70,14 +69,20 @@ export default class ReservationList {
             }
           });
 
+          const onOpen = () => {
+            const modal = document.querySelector('.reservation-detail');
+            const body = document.querySelector('body');
+            const scrollArea = document.querySelector('.reservations-list');
+
+            modal.style.display = 'block';
+            body.style.overflow = 'hidden';
+            scrollArea.style.overflow = 'hidden';
+          };
+
           item.addEventListener('click', (e) => {
             this.focusedIndex = index;
             this.render();
-
-            if (isMobile()) {
-              const modal = document.querySelector('.reservation-detail');
-              modal.style.display = 'block';
-            }
+            if (isMobile()) onOpen();
           });
 
           reservations.appendChild(item);

@@ -64,7 +64,7 @@ h3 {
 }
 
 .reservations-list::-webkit-scrollbar {
-  width: 5px; /* 스크롤바의 너비 */
+  width: 5px;
 }
 
 .reservations-list::-webkit-scrollbar-thumb {
@@ -167,7 +167,7 @@ h3 {
 }
 
 .reservation-detail__li--long:last-child {
-  margin-top: 3em;
+  margin-top: 2em;
 }
 
 .reservation-detail__ul li strong {
@@ -177,7 +177,7 @@ h3 {
 /* mobile */
 @media (max-width: 1024px) {
   .reservation-detail {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
