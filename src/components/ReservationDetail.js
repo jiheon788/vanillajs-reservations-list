@@ -1,5 +1,6 @@
-import { Status } from '../constants/UI.js';
+import { STATUS } from '../constants/UI.js';
 import { isMobile, timeFormatter } from '../utils/UIHelper.js';
+import { onClose } from '../utils/modalHelper.js';
 
 export default class ReservationDetail {
   constructor($target, data) {
@@ -19,7 +20,7 @@ export default class ReservationDetail {
       <ul class="reservation-detail__ul">
         <li class="reservation-detail__li--short">예약 상태 <strong class="reservation__status--${
           this.reservation.status
-        }">${Status[this.reservation.status]}</strong></li>
+        }">${STATUS[this.reservation.status]}</strong></li>
         <li class="reservation-detail__li--short">예약 시간 <strong>${timeFormatter(
           this.reservation.timeReserved,
         )}</strong></li>
@@ -44,16 +45,6 @@ export default class ReservationDetail {
       </ul>
     </div>
     `;
-
-    const onClose = () => {
-      const modal = document.querySelector('.reservation-detail');
-      const body = document.querySelector('body');
-      const scrollArea = document.querySelector('.reservations-list');
-
-      modal.style.display = 'none';
-      body.style.overflow = 'auto';
-      scrollArea.style.overflow = 'auto';
-    };
 
     const closeButton = detailItem.querySelector('.reservation-detail__button');
 
