@@ -8,6 +8,7 @@ export default class ReservationList {
     this.$containter = $containter;
     this.reservationsData = data;
     this.focusedIndex = 0;
+    this.currentScrollTop = 0;
     this.render();
   }
 
@@ -54,6 +55,7 @@ export default class ReservationList {
       `;
 
           item.addEventListener('click', (e) => {
+            this.currentScrollTop = reservations.scrollTop;
             this.focusedIndex = index;
             this.render();
             if (isMobile()) onOpen();
@@ -65,6 +67,7 @@ export default class ReservationList {
 
           statusButton.addEventListener('click', (e) => {
             e.stopPropagation();
+            this.currentScrollTop = reservations.scrollTop;
             const index = e.target.dataset.index;
             const status = e.target.dataset.status;
 
@@ -79,7 +82,9 @@ export default class ReservationList {
         }
       });
     }
+
     this.$containter.appendChild(reservations);
+    reservations.scrollTop = this.currentScrollTop;
 
     new ReservationDetail(
       this.$containter,
