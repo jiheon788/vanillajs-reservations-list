@@ -40,6 +40,13 @@ export default class ReservationDetail {
       }
     });
 
+    detailItem.addEventListener('click', (e) => {
+      if (e.target.classList.contains('reservation-detail')) {
+        const modal = document.querySelector('.reservation-detail');
+        modal.style.display = 'none';
+      }
+    });
+
     this.$target.appendChild(detailItem);
   }
 }
