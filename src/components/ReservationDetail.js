@@ -2,26 +2,22 @@ import { Status } from '../constants/UI.js';
 
 export default class ReservationDetail {
   constructor($target, data) {
-    this.detailItem = document.createElement('div');
-    this.detailItem.className = 'reservation-detail';
+    this.$target = $target;
     this.reservation = data;
-    $target.appendChild(this.detailItem);
     this.render();
   }
 
   render() {
-    const reservationInfo = document.createElement('div');
-    const customerInfo = document.createElement('div');
+    const detailItem = document.createElement('div');
+    detailItem.className = 'reservation-detail';
 
-    reservationInfo.innerHTML = `
+    detailItem.innerHTML = `
     <h1>예약 정보</h1>
     <ul>
     <li>예약 상태 ${Status[this.reservation.status]}</li>
     <li>예약 시간 ${this.reservation.timeReserved}</li>
     <li>접수 시간 ${this.reservation.timeRegistered}</li>
     </ul>
-    `;
-    customerInfo.innerHTML = `
     <h1>고객 정보</h1>
     <ul>
     <li>고객 성명 ${this.reservation.customer.name}</li>
@@ -31,7 +27,6 @@ export default class ReservationDetail {
     </ul>
     `;
 
-    this.detailItem.appendChild(reservationInfo);
-    this.detailItem.appendChild(customerInfo);
+    this.$target.appendChild(detailItem);
   }
 }
