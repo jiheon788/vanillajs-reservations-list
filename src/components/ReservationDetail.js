@@ -1,5 +1,5 @@
 import { Status } from '../constants/UI.js';
-import { isMobile } from '../utils/UIHelper.js';
+import { isMobile, timeFormatter } from '../utils/UIHelper.js';
 
 export default class ReservationDetail {
   constructor($target, data) {
@@ -17,15 +17,15 @@ export default class ReservationDetail {
       <h3>예약 정보</h3>
       <button type="button" class="reservation-detail__button">닫기</button>
       <ul class="reservation-detail__ul">
-        <li class="reservation-detail__li--short">예약 상태 <strong>${
-          Status[this.reservation.status]
-        }</strong></li>
-        <li class="reservation-detail__li--short">예약 시간 <strong>${
-          this.reservation.timeReserved
-        }</strong></li>
-        <li class="reservation-detail__li--short">접수 시간 <strong>${
-          this.reservation.timeRegistered
-        }</strong></li>
+        <li class="reservation-detail__li--short">예약 상태 <strong class="reservation__status--${
+          this.reservation.status
+        }">${Status[this.reservation.status]}</strong></li>
+        <li class="reservation-detail__li--short">예약 시간 <strong>${timeFormatter(
+          this.reservation.timeReserved,
+        )}</strong></li>
+        <li class="reservation-detail__li--short">접수 시간 <strong>${timeFormatter(
+          this.reservation.timeRegistered,
+        )}</strong></li>
       </ul>
       <h3>고객 정보</h3>
       <ul class="reservation-detail__ul">

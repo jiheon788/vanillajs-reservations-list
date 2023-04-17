@@ -24,7 +24,7 @@ export default class ReservationList {
           item.innerHTML = `
         <div>
           <div>${timeFormatter(reservation.timeReserved)}</div>
-          <div class="reservations-list__item__status--${reservation.status}">
+          <div class="reservation__status--${reservation.status}">
             ${Status[reservation.status]}
           </div>
         </div>
