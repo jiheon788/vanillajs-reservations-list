@@ -14,19 +14,33 @@ export default class ReservationDetail {
 
     detailItem.innerHTML = `
     <div class="reservation-detail__body">
-      <h1>예약 정보</h1>
+      <h3>예약 정보</h3>
       <button type="button" class="reservation-detail__button">닫기</button>
-      <ul>
-        <li>예약 상태 ${Status[this.reservation.status]}</li>
-        <li>예약 시간 ${this.reservation.timeReserved}</li>
-        <li>접수 시간 ${this.reservation.timeRegistered}</li>
+      <ul class="reservation-detail__ul">
+        <li class="reservation-detail__li--short">예약 상태 <strong>${
+          Status[this.reservation.status]
+        }</strong></li>
+        <li class="reservation-detail__li--short">예약 시간 <strong>${
+          this.reservation.timeReserved
+        }</strong></li>
+        <li class="reservation-detail__li--short">접수 시간 <strong>${
+          this.reservation.timeRegistered
+        }</strong></li>
       </ul>
-      <h1>고객 정보</h1>
-      <ul>
-        <li>고객 성명 ${this.reservation.customer.name}</li>
-        <li>고객 등급 ${this.reservation.customer.level}</li>
-        <li>고객 메모 ${this.reservation.customer.memo}</li>
-        <li>요청 사항 ${this.reservation.customer.request}</li>
+      <h3>고객 정보</h3>
+      <ul class="reservation-detail__ul">
+        <li class="reservation-detail__li--short">고객 성명 <strong>${
+          this.reservation.customer.name
+        }</strong></li>
+        <li class="reservation-detail__li--short">고객 등급 <strong>${
+          this.reservation.customer.level
+        }</strong></li>
+        <li class="reservation-detail__li--long">고객 메모 <strong>${
+          this.reservation.customer.memo
+        }</strong></li>
+        <li class="reservation-detail__li--long">요청 사항 <strong>${
+          this.reservation.customer.request
+        }</strong></li>
       </ul>
     </div>
     `;
@@ -41,7 +55,7 @@ export default class ReservationDetail {
     });
 
     detailItem.addEventListener('click', (e) => {
-      if (e.target.classList.contains('reservation-detail')) {
+      if (e.target.classList.contains('reservation-detail') && isMobile()) {
         const modal = document.querySelector('.reservation-detail');
         modal.style.display = 'none';
       }

@@ -6,6 +6,11 @@ class App {
     this.$app = $app;
     this.wrapper = document.createElement('div');
     this.wrapper.className = 'wrapper';
+    this.wrapper.innerHTML = `<h1>예약 목록</h1>`;
+
+    this.container = document.createElement('div');
+    this.container.className = 'container';
+    this.wrapper.appendChild(this.container);
     $app.appendChild(this.wrapper);
     this.render();
   }
@@ -13,7 +18,7 @@ class App {
     let response = null;
     response = await api.fetchReservations();
 
-    new ReservationList(this.wrapper, response.reservations);
+    new ReservationList(this.container, response.reservations);
   }
 }
 

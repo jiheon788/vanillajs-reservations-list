@@ -5,29 +5,54 @@
   --secondary-color: #3bb94c;
   --background-color: #ced8e4;
   --white-color: #ffffff;
+  --grey-color: #aaaaaa;
+  --dark-color: #222222;
 }
 
 html,
 body {
   background-color: var(--background-color);
+  line-height: 1.3;
 }
 
 * {
   box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.75em;
+}
+
+h3 {
+  font-size: 1.5em;
 }
 
 .wrapper {
+  padding: 2em 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3em;
+}
+
+.container {
   margin: 0 auto;
   display: flex;
   gap: 1em;
-  background-color: red;
-  max-width: 1000px;
+  width: 1000px;
+  height: 600px;
 }
 
 /* mobile */
 @media (max-width: 1024px) {
-  .wrapper {
-    background-color: tomato;
+  .container {
     width: 100%;
     padding: 0 8px;
   }
@@ -35,23 +60,46 @@ body {
 
 .reservations-list {
   width: 100%;
+  overflow-y: scroll;
+}
+
+.reservations-list::-webkit-scrollbar {
+  width: 5px; /* 스크롤바의 너비 */
+}
+
+.reservations-list::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 50px;
+}
+
+.reservations-list::-webkit-scrollbar-track {
+  background: rgba(33, 122, 244, 0.1);
 }
 
 .reservations-list__button {
   background-color: var(--primary-color);
   color: var(--white-color);
   border-radius: 5px;
-  padding: 0.5em 1em;
+  padding: 0.2em 0.1em;
+  width: 50px;
 }
 
 .reservations-list__item {
   background-color: var(--white-color);
   margin-bottom: 1em;
   display: grid;
-  grid-template-columns: 0.2fr 1fr 0.1fr;
+  grid-template-columns: 0.2fr 1fr 0.2fr;
+  place-items: center;
   align-items: center;
   border-radius: 20px;
-  padding: 0.5em 1em;
+  padding: 1em 0.5em;
+}
+
+/* mobile */
+@media (max-width: 1024px) {
+  .reservations-list__item {
+    grid-template-columns: 0.2fr 0.8fr 0.2fr;
+  }
 }
 
 .reservations-list__item__customerInfo,
@@ -66,7 +114,7 @@ body {
 @media (max-width: 1024px) {
   .reservations-list__item__customerInfo,
   .reservations-list__item__menus {
-    width: 50px;
+    width: 150px;
   }
 }
 
@@ -79,13 +127,51 @@ body {
 }
 
 .reservation-detail {
-  width: 400px;
+  width: 300px;
   background-color: var(--white-color);
   border-radius: 20px;
-  padding: 0.5em 1em;
 }
 .reservation-detail__body {
-  text-align: center;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+}
+
+.reservation-detail__ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  gap: 0.5em;
+}
+
+.reservation-detail__ul li {
+  color: var(--grey-color);
+  width: 100%;
+}
+
+.reservation-detail__li--short {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reservation-detail__li--long {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.reservation-detail__li--long:last-child {
+  margin-top: 3em;
+}
+
+.reservation-detail__ul li strong {
+  color: var(--dark-color);
 }
 
 /* mobile */
@@ -106,12 +192,10 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 600px;
-    padding: 40px;
+    height: 80%;
     background-color: rgb(255, 255, 255);
     border-radius: 20px 20px 0 0;
     box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-
     animation-name: slideIn;
     animation-duration: 0.5s;
     animation-timing-function: ease-out;
@@ -136,6 +220,8 @@ body {
 
 @media (max-width: 1024px) {
   .reservation-detail__button {
+    background: none;
+    border: none;
     display: block;
     position: absolute;
     top: 5%;

@@ -3,16 +3,16 @@ import { isMobile, timeFormatter } from '../utils/UIHelper.js';
 import ReservationDetail from './ReservationDetail.js';
 
 export default class ReservationList {
-  constructor($wrapper, data) {
-    this.$wrapper = $wrapper;
+  constructor($containter, data) {
+    this.$containter = $containter;
     this.reservationsData = data;
+    console.log(data);
     this.focusedIndex = 0;
     this.render();
   }
 
   render() {
-    this.$wrapper.innerHTML = '';
-
+    this.$containter.innerHTML = '';
     const reservations = document.createElement('div');
     reservations.className = 'reservations-list';
 
@@ -84,10 +84,10 @@ export default class ReservationList {
         }
       });
     }
-    this.$wrapper.appendChild(reservations);
+    this.$containter.appendChild(reservations);
 
     new ReservationDetail(
-      this.$wrapper,
+      this.$containter,
       this.reservationsData[this.focusedIndex],
     );
   }
