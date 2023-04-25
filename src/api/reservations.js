@@ -10,7 +10,6 @@ const request = async (url) => {
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
       return data;
     } else {
       const errData = await response.json();
