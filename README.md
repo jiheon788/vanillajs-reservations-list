@@ -30,13 +30,21 @@ npm run dev
 
 and then, access [http://localhost:1234](http://localhost:1234) from your browser
 
+#### env
+
+Fill out `.env` for your server url
+
+```
+SERVER_URL=${your server url}
+```
+
 ## Features
 
 - PLP/PDP (Modal on mobile only)
 - Slide-up for fade-in animation when displaying modals using keyframe
 - Change the reservation status with the button
 - Scroll memoization when an event triggers
-- Cross Browsing using [Autoprefixer](https://autoprefixer.github.io/)
+- Cross Browsing
 
 ## Tech Stack
 

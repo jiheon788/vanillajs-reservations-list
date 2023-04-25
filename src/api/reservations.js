@@ -1,20 +1,23 @@
-const URL = 'https://frontend.tabling.co.kr';
+import mockData from '../../mockData.json';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const URL = process.env.SERVER_URL;
 
 const request = async (url) => {
   try {
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
+      console.log(data);
       return data;
     } else {
       const errData = await response.json();
       throw errData;
     }
   } catch (e) {
-    throw {
-      message: e.message,
-      status: e.status,
-    };
+    return mockData;
   }
 };
 
